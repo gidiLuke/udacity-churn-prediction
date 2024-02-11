@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+  ide:
+    build:
+      context: .
+      target: ide
+    env_file:
+      - .env
+      - .env_dev
+    image: udacity-ml-devops-nanodegree
+    container_name: udacity-ml-devops-nanodegree
+    ports:
+      - 8081:8080
+    volumes:
+      - .:/home/root/app/.
+      - pre-commit:/root/.cache/pre-commit
+      - poetry-cache:/root/.cache/pypoetry
+      - ssh-cache:/root/.ssh/
+      - $HOME/.gitconfig:/root/.gitconfig
+      - type: bind
+        source: /run/host-services/ssh-auth.sock
+        target: /run/host-services/ssh-auth.sock
+    environment:
+        SSH_AUTH_SOCK: /run/host-services/ssh-auth.sock
+    command: bash -c "poetry run pre-commit install && while sleep 1000; do :; done"
+
+volumes:
+  pre-commit:
+  poetry-cache:
+  ssh-cache:

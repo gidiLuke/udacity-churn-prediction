@@ -1,0 +1,42 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-docker-compose
+{
+	"name": "udacity-churn-prediction"",
+	"dockerComposeFile": [
+		"../docker-compose.yaml"
+	],
+	"service": "ide",
+	"workspaceFolder": "/home/root/app",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"charliermarsh.ruff",
+				"davidanson.vscode-markdownlint",
+				"hediet.vscode-drawio",
+				"mhutchie.git-graph",
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"ms-toolsai.jupyter",
+				"ms-toolsai.jupyter-keymap",
+				"ms-toolsai.jupyter-renderers",
+				"ms-toolsai.vscode-jupyter-cell-tags",
+				"ms-toolsai.vscode-jupyter-slideshow",
+				"ms-vsliveshare.vsliveshare",
+				"njpwerner.autodocstring",
+				"njzy.stats-bar",
+				"streetsidesoftware.code-spell-checker",
+				"tamasfe.even-better-toml",
+				"yzhang.markdown-all-in-one",
+				"christian-kohler.path-intellisense",
+				"kevinrose.vsc-python-indent",
+				"elazarcoh.simply-view-image-for-python-debugging",
+				"takumii.markdowntable",
+				"shd101wyy.markdown-preview-enhanced",
+				"linhmtran168.mac-ca-vscode",
+				"visualstudioexptteam.intellicode-api-usage-examples",
+				"visualstudioexptteam.vscodeintellico",
+				"streetsidesoftware.code-spell-checker-british-english"
+			]
+		}
+	}
+}

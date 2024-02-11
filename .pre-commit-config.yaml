@@ -1,0 +1,32 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-toml
+      - id: check-yaml
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      # - id: check-added-large-files
+  - repo: local
+    hooks:
+      - id: ruff-format
+        name: ruff-format
+        entry: ruff
+        language: system
+        require_serial: true
+        types: [python]
+        args: [format]
+      - id: ruff
+        name: ruff
+        entry: ruff
+        language: system
+        require_serial: true
+        types: [python]
+        args: [--fix]
+      # - id: pyright
+      #   name: pyright
+      #   entry: pyright
+      #   language: system
+      #   types: [python]
