@@ -11,6 +11,9 @@ from customer_churn_prediction.churn_library import (
     perform_feature_engineering,
     train_models,
 )
+from customer_churn_prediction.utils import logger
+
+logger = logger.get_logger()
 
 
 def test_import_data():
@@ -19,6 +22,7 @@ def test_import_data():
     df = import_data(pth=test_path)
     assert not df.empty
     assert "Churn" in df.columns
+    logger.info(msg="test_import_data passed")
 
 
 def test_perform_eda(tmpdir: Path, sample_data: pd.DataFrame) -> None:
@@ -30,6 +34,7 @@ def test_perform_eda(tmpdir: Path, sample_data: pd.DataFrame) -> None:
     assert (fig_path / "correlations.png").exists()
     assert (fig_path / "marital_status_bar.png").exists()
     assert (fig_path / "total_trans_ct.png").exists()
+    logger.info(msg="test_perform_eda passed")
 
 
 def test_encoder_helper(sample_data: pd.DataFrame) -> None:
@@ -45,6 +50,7 @@ def test_encoder_helper(sample_data: pd.DataFrame) -> None:
     assert "Gender_Churn" in df_encoded.columns
     # Verify the encoding correctness
     assert df_encoded["Gender_Churn"].notnull().all()
+    logger.info(msg="test_encoder_helper passed")
 
 
 def test_perform_feature_engineering(sample_data: pd.DataFrame) -> None:
@@ -52,6 +58,7 @@ def test_perform_feature_engineering(sample_data: pd.DataFrame) -> None:
     X_train, X_test, y_train, y_test = perform_feature_engineering(df=sample_data)
     assert not X_train.empty and not X_test.empty
     assert not y_train.empty and not y_test.empty
+    logger.info(msg="test_perform_feature_engineering passed")
 
 
 def test_train_models(tmpdir, sample_data) -> None:  # type: ignore
@@ -78,3 +85,5 @@ def test_train_models(tmpdir, sample_data) -> None:  # type: ignore
     # Check if the expected files (models and images) were created
     assert len(list(fig_path.iterdir())) > 0, "No figures were saved"
     assert len(list(model_path.iterdir())) > 0, "No models were saved"
+
+    logger.info(msg="test_train_models passed")
